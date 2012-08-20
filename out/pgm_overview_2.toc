@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.12pt}
+\beamer@endinputifotherversion {3.20pt}
 \beamer@sectionintoc {1}{Conversion between Networks \cite {pgmbook}}{3}{0}{1}
 \beamer@subsectionintoc {1}{1}{Motivation}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Bayesian Networks to Markov Networks}{5}{0}{1}

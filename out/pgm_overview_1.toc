@@ -1,4 +1,4 @@
-\beamer@endinputifotherversion {3.12pt}
+\beamer@endinputifotherversion {3.20pt}
 \beamer@sectionintoc {1}{Probability Review \cite {pgmbook}}{3}{0}{1}
 \beamer@sectionintoc {2}{Bayesian Networks \cite {pgmbook}}{10}{0}{2}
 \beamer@subsectionintoc {2}{1}{Introduction}{10}{0}{2}
