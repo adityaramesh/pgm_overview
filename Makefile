@@ -12,14 +12,15 @@ objects  = out/pgm_overview_1.pdf out/pgm_overview_2.pdf
 .PHONY : all clean redo
 
 all : $(objects)
+	for i in $$(ls 'out'); do \
+		if [[ $$i != *.pdf ]]; then \
+			rm out/$$i; \
+		fi; \
+	done;
 
 clean :
 	rm -rf out/*
 
-out/pgm_overview_1.pdf : clean
-	$(tex) $(texflags) src/pgm_overview_1.tex
-	$(tex) $(texflags) src/pgm_overview_1.tex
-
-out/pgm_overview_2.pdf : clean
-	$(tex) $(texflags) src/pgm_overview_2.tex
-	$(tex) $(texflags) src/pgm_overview_2.tex
+%.pdf : clean
+	$(tex) $(texflags) src/$(*F).tex
+	$(tex) $(texflags) src/$(*F).tex
