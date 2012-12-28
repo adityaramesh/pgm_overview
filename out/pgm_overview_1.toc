@@ -7,6 +7,6 @@
 \beamer@subsectionintoc {2}{4}{Applications}{60}{0}{2}
 \beamer@sectionintoc {3}{Markov Networks \cite {pgmbook}}{64}{0}{3}
 \beamer@subsectionintoc {3}{1}{Introduction}{64}{0}{3}
-\beamer@subsectionintoc {3}{2}{Independence}{70}{0}{3}
-\beamer@subsectionintoc {3}{3}{Distributions to Graphs}{80}{0}{3}
-\beamer@subsectionintoc {3}{4}{Log-Linear Models}{83}{0}{3}
+\beamer@subsectionintoc {3}{2}{Independence}{71}{0}{3}
+\beamer@subsectionintoc {3}{3}{Distributions to Graphs}{81}{0}{3}
+\beamer@subsectionintoc {3}{4}{Log-Linear Models}{84}{0}{3}

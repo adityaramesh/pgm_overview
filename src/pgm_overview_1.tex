@@ -1021,58 +1021,20 @@ and Charles, Charles and Debbie, and Debbie and Alice).}
 		\phi_{1}(\boldsymbol{X}, \boldsymbol{Y}) \cdot
 		\phi_{2}(\boldsymbol{Y}, \boldsymbol{Z}).
 	\]
-	\item Now we can define $\tilde{P}$ given a set of factors
-	$\boldsymbol{\Phi} = \{\phi_{1}(\boldsymbol{D}_{1}), \ldots,
-	\phi_{m}(\boldsymbol{D}_{m})\}$:
+	\item The notation $\phi_{1}(\boldsymbol{X}, \boldsymbol{Y}) \cdot
+	\phi_{2}(\boldsymbol{Y}, \boldsymbol{Z})$ is deceptively concise. For
+	discrete distributions, $\psi(\boldsymbol{X}, \boldsymbol{Y},
+	\boldsymbol{Z})$ is a tensor of order $|X| + |Y| + |Z|$, each of whose
+	elements
 	\[
-		\tilde{P}(X_{1}, \ldots, X_{n}) = \phi_{1}(\boldsymbol{D}_{1})
-		\times \cdots \times \phi_{m}(\boldsymbol{D}_{m}).
+		\psi(\boldsymbol{x}, \boldsymbol{y}, \boldsymbol{z}) =
+		\phi_{1}(\boldsymbol{x}, \boldsymbol{y}) \cdot
+		\phi_{2}(\boldsymbol{y}, \boldsymbol{z})
 	\]
-\end{itemize}
-\end{frame}
-
-\newcommand{\misconceptionmrf}
-{
-	\begin{tikzpicture}
-	\scriptsize
-	\node[darkstyle] (a) at (0,1) {$A$};
-	\node[darkstyle] (b) at (1,0) {$B$};
-	\node[darkstyle] (c) at (0,-1) {$C$};
-	\node[darkstyle] (d) at (-1,0) {$D$};
-	\draw (a)--(b);
-	\draw (b)--(c);
-	\draw (c)--(d);
-	\draw (d)--(a);
-	\end{tikzpicture}
-}
-
-\begin{frame}{The Misconception Model \cite{pgmslides}}
-\setlength{\topsep}{0pt}
-\setlength{\partopsep}{0pt}
-\vspace{0pt}
-\centering
-\begin{figure}[!t]
-\resizebox{0.3\textwidth}{!}{\misconceptionmrf}
-\end{figure}
-\begin{itemize}
-	\item We introduce single-node potentials $\phi_{A}, \phi_{B}, \phi_{C},
-	\phi_{D}$ to represent probabilities that individuals correctly work out
-	the misconceptions themselves.
-	\item We introduce pairwise potentials $\phi_{AB}, \phi_{BC}, \phi_{CD},
-	\phi_{DA}$ to model whether partners agree after their meeting.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{The Misconception Model \cite{pgmslides}}
-\begin{itemize}
-	\item The joint distribution is
-	\begin{align*}
-		P(A,B,C,D) &= \frac{1}{Z}\phi(a)\phi(b)\phi(c)\phi(d) \\
-		&\phi(a,b)\phi(b,c)\phi(c,d)\phi(d,a).
-	\end{align*}
-	\item Entries in the potentials need not be normalized; we can only
-	judge relative importance by normalizing (scaling by $Z$) before
-	comparison.
+	corresponds to a unique assignment $\boldsymbol{x} \in \boldsymbol{X},
+	\boldsymbol{y} \in \boldsymbol{Y}$, and $\boldsymbol{z} \in
+	\boldsymbol{Z}$.
+	
 \end{itemize}
 \end{frame}
 
@@ -1202,6 +1164,69 @@ and Charles, Charles and Debbie, and Debbie and Alice).}
 \end{figure}
 \end{frame}
 
+\begin{frame}{What is a Markov Network?}
+\begin{itemize}
+\item Note that computing the factor product over two discrete distributions can
+quickly become computationally expensive as the number of variables involved
+increases.
+\item Now we can define $\tilde{P}$ given a set of factors $\boldsymbol{\Phi} =
+\{\phi_{1}(\boldsymbol{D}_{1}), \ldots, \phi_{m}(\boldsymbol{D}_{m})\}$ as
+\[
+	\tilde{P}(X_{1}, \ldots, X_{n}) = \phi_{1}(\boldsymbol{D}_{1})
+	\times \cdots \times \phi_{m}(\boldsymbol{D}_{m}),
+\]
+where each $\boldsymbol{D}_{i}$ is a clique in the Markov network.
+\item Evaluating an $n$-ary factor product pairwise will result in the
+generation of intermediate temporaries. If performance is a concern, we can
+avoid doing this by implementing a variadic factor product function.
+\end{itemize}
+\end{frame}
+
+\newcommand{\misconceptionmrf}
+{
+	\begin{tikzpicture}
+	\scriptsize
+	\node[darkstyle] (a) at (0,1) {$A$};
+	\node[darkstyle] (b) at (1,0) {$B$};
+	\node[darkstyle] (c) at (0,-1) {$C$};
+	\node[darkstyle] (d) at (-1,0) {$D$};
+	\draw (a)--(b);
+	\draw (b)--(c);
+	\draw (c)--(d);
+	\draw (d)--(a);
+	\end{tikzpicture}
+}
+
+\begin{frame}{The Misconception Model \cite{pgmslides}}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\vspace{0pt}
+\centering
+\begin{figure}[!t]
+\resizebox{0.3\textwidth}{!}{\misconceptionmrf}
+\end{figure}
+\begin{itemize}
+	\item We introduce single-node potentials $\phi_{A}, \phi_{B}, \phi_{C},
+	\phi_{D}$ to represent probabilities that individuals correctly work out
+	the misconceptions themselves.
+	\item We introduce pairwise potentials $\phi_{AB}, \phi_{BC}, \phi_{CD},
+	\phi_{DA}$ to model whether partners agree after their meeting.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Misconception Model \cite{pgmslides}}
+\begin{itemize}
+	\item The joint distribution is
+	\begin{align*}
+		P(A,B,C,D) &= \frac{1}{Z}\phi_A(A)\phi_B(B)\phi_C(C)\phi_D(D) \\
+		&\phi_{AB}(A,B)\phi_{BC}(B,C)\phi_{CD}(C,D)\phi_{DA}(D,A).
+	\end{align*}
+	\item Entries in the potentials need not be normalized; we can only
+	judge relative importance by normalizing (scaling by $Z$) before
+	comparison.
+\end{itemize}
+\end{frame}
+
 \subsection{Independence}
 
 \begin{frame}{Independence \cite{pgmslides}}
@@ -1209,9 +1234,9 @@ and Charles, Charles and Debbie, and Debbie and Alice).}
 	\item Consider a Markov network $A\text{---}B\text{---}C$ with the joint
 	distribution
 	\[
-		P(a,b,c) = \frac{1}{Z}\phi_{AB}(a,b)\phi_{BC}(b,c).
+		P(A,B,C) = \frac{1}{Z}\phi_{AB}(A,B)\phi_{BC}(B,C).
 	\]
-	\item First, we show that $P(a \;|\; b)$ can be computed using only
+	\item We show that $P(a \;|\; b)$ can be computed using only
 	$\phi_{AB}(a,b)$:
 	\begin{align*}
 		P(a \;|\; b) &= \frac{P(a,b)}{P(b)} \\
