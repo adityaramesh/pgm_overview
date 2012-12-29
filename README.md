@@ -8,11 +8,10 @@
 ## Introduction
 
 This repository contains the source for a series of slides that serve as an
-overview of graphical models. Currently, they provide a discourse on the
-representation of graphical models, including the factorization and independence
-properties of directed, undirected, and partially directed graphical models. The
-slides borrow or directly incorporate material from Daphne Koller and Nir
-Friedman's
+overview of the representation of graphical models. The topics include
+factorization and independence properties of directed, undirected, and partially
+directed graphical models. The slides borrow or directly incorporate material
+from Daphne Koller and Nir Friedman's
 [book](http://www.amazon.com/Probabilistic-Graphical-Models-Principles-Computation/dp/0262013193)
 on Probabilistic Graphical Models, as well as from David Sontag's [lecture
 slides](http://cs.nyu.edu/~dsontag/courses/pgm12/). I highly recommend that you
