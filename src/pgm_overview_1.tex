@@ -6,27 +6,59 @@
 %
 
 \documentclass[11pt]{beamer}
-\usepackage[noend]{algorithmic}
+
+% Packages for mathematics.
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{breqn}
+\usepackage{xfrac}
+
+% Packages for algorithms.
+\usepackage[noend]{algorithmic}
+
+% Packages for tables.
 \usepackage{booktabs}
-\usepackage{cancel}
-\usepackage{caption}
 \usepackage{colortbl}
-\usepackage{graphicx}
 \usepackage{multirow}
+
+% Packages for text effects.
+\usepackage{bbm}
+\usepackage{cancel}
 \usepackage{setspace}
+\usepackage{url}
+
+% Pakcages for improved typography. We need the `ragged2e` package, because the
+% `raggedright` used by Beamer disables hyphenation.
+\usepackage[
+	activate={true,nocompatibility},
+	tracking=true,
+	kerning=true,
+	spacing=true
+]{microtype}
+\usepackage{ragged2e}
+\let\raggedright=\RaggedRight
+\setlength{\rightskip}{0pt}
+
+% Packages for preparing figures.
+\usepackage{caption}
+\usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{tikz}
-\usepackage{url}
-\usepackage{xfrac}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.callouts}
 \usetikzlibrary{shapes.multipart}
 \usetheme{Singapore}
 \usecolortheme{dove}
 
+\tikzset{
+	darkstyle/.style={circle,draw=black,fill=white!80!black},
+	lightstyle/.style={circle,draw=black,fill=white},
+	tablestyle/.style={rectangle,fill=white},
+	factorstyle/.style={rectangle,draw=black,fill=white!80!black}
+}
+
+% Beamer setup.
 \captionsetup[subfigure]{position=top,labelformat=empty}
 \title[PGM Overview]{%
 	Overview of Probabilistic Graphical Models\\
@@ -43,13 +75,6 @@
 }
 \date{}
 \setbeamertemplate{itemize items}{\textbullet}
-
-\tikzset{
-	darkstyle/.style={circle,draw=black,fill=white!80!black},
-	lightstyle/.style={circle,draw=black,fill=white},
-	tablestyle/.style={rectangle,fill=white},
-	factorstyle/.style={rectangle,draw=black,fill=white!80!black}
-}
 
 \begin{document}
 
@@ -301,8 +326,10 @@ you take some time to read their work.
 	\item In the student model, $Val(D) = \{easy,hard\}, Val(I) =
 	\{low,high\}, Val(G) = \{A,B,C\}, Val(S) = \{low,high\}$, and $Val(L) =
 	\{weak,strong\}$.
-	\item The joint distribution is $P(i,d,g,s,l) =
-	P(i)P(d)P(g\;|\;i,d)P(s\;|\;i)P(l\;|\;g)$.
+	\item The joint distribution is
+	\[
+		P(i,d,g,s,l) = P(i)P(d)P(g\;|\;i,d)P(s\;|\;i)P(l\;|\;g).
+	\]
 \end{itemize}
 \end{frame}
 
@@ -355,7 +382,7 @@ you take some time to read their work.
 	conditional independence assertions $I_{\ell}(G)$, called the
 	\emph{local independencies}:
 	\[
-		\forall X_{i} \in Val(X): (X_{i} \perp
+		\forall\; X_{i} \in Val(X): (X_{i} \perp
 		\text{NonDescendants}_{X_{i}} \;|\; \pi(X_{i})).
 	\]
 	\item We define $I(P)$ to be the set of independence assertions of the
@@ -870,8 +897,8 @@ common cause; (d) A common effect.}
 	the features $\boldsymbol{X}_{i}$ be functions of their counts (e.g.
 	``Nigeria'', ``bank'').
 	\item The local probability models (in our case $P(Y)$ and $P(X_{i}
-	\;|\; Y) \;\forall X_{i}$) are now easily computed, and we have designed a
-	primitive email spam-detection system.
+	\;|\; Y) \;\forall\; X_{i}$) are now easily computed, and we have
+	designed a primitive email spam-detection system.
 	\item What is the name of this classifier?
 \end{itemize}
 \end{frame}
@@ -1169,8 +1196,12 @@ and Charles, Charles and Debbie, and Debbie and Alice).}
 \item Note that computing the factor product over two discrete distributions can
 quickly become computationally expensive as the number of variables involved
 increases.
-\item Now we can define $\tilde{P}$ given a set of factors $\boldsymbol{\Phi} =
-\{\phi_{1}(\boldsymbol{D}_{1}), \ldots, \phi_{m}(\boldsymbol{D}_{m})\}$ as
+\item Now we can define $\tilde{P}$ given a set of factors
+\[
+	\boldsymbol{\Phi} = \{\phi_{1}(\boldsymbol{D}_{1}), \ldots,
+	\phi_{m}(\boldsymbol{D}_{m})\}
+\]
+as
 \[
 	\tilde{P}(X_{1}, \ldots, X_{n}) = \phi_{1}(\boldsymbol{D}_{1})
 	\times \cdots \times \phi_{m}(\boldsymbol{D}_{m}),

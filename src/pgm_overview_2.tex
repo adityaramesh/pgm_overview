@@ -6,29 +6,59 @@
 %
 
 \documentclass[11pt]{beamer}
-\usepackage[noend]{algorithmic}
+
+% Packages for mathematics.
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{bbm}
 \usepackage{breqn}
-\usepackage{cancel}
-\usepackage{caption}
+\usepackage{xfrac}
+
+% Packages for algorithms.
+\usepackage[noend]{algorithmic}
+
+% Packages for tables.
+\usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{graphicx}
 \usepackage{multirow}
+
+% Packages for text effects.
+\usepackage{bbm}
+\usepackage{cancel}
 \usepackage{setspace}
+\usepackage{url}
+
+% Pakcages for improved typography. We need the `ragged2e` package, because the
+% `raggedright` used by Beamer disables hyphenation.
+\usepackage[
+	activate={true,nocompatibility},
+	tracking=true,
+	kerning=true,
+	spacing=true
+]{microtype}
+\usepackage{ragged2e}
+\let\raggedright=\RaggedRight
+\setlength{\rightskip}{0pt}
+
+% Packages for preparing figures.
+\usepackage{caption}
+\usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{tikz}
-\usepackage{url}
-\usepackage{xfrac}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.callouts}
 \usetikzlibrary{shapes.multipart}
 \usetheme{Singapore}
 \usecolortheme{dove}
 
+\tikzset{
+	darkstyle/.style={circle,draw=black,fill=white!80!black},
+	lightstyle/.style={circle,draw=black,fill=white},
+	tablestyle/.style={rectangle,fill=white},
+	factorstyle/.style={rectangle,draw=black,fill=white!80!black}
+}
+
+% Beamer setup.
 \captionsetup[subfigure]{position=top,labelformat=empty}
 \title[PGM Overview]{%
 	Overview of Probabilistic Graphical Models\\
@@ -45,13 +75,6 @@
 }
 \date{}
 \setbeamertemplate{itemize items}{\textbullet}
-
-\tikzset{
-	darkstyle/.style={circle,draw=black,fill=white!80!black},
-	lightstyle/.style={circle,draw=black,fill=white},
-	tablestyle/.style={rectangle,fill=white},
-	factorstyle/.style={rectangle,draw=black,fill=white!80!black}
-}
 
 \begin{document}
 
